@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<header>
+    <h1>Email Automation</h1>
+    <section class="menu">
+        <ul class="menu-list">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            {% if user.is_authenticated %}
+
+            <li><a href="{% url 'logout' %}">Logout<a href="{% url 'logout' %}"></a></li>
+
+            {% else %}
+            <li><a href="{% url 'login' %}">Login</a></li> 
+            <li><a href="{% url 'register' %}">Register</a></li>
+            {% endif %}
+        </ul>
+    </section>
+</header>
+    
+<section class="main">
+    <section class="left">
+        {% if user.is_authenticated %}
+            <p class="title">Hello {{user.first_name}} {{user.last_name}}!!</p>
+            <p class="msg">Email message is sent to your Registered mail Id.</p>
+        {% else %}
+            <p class="title">Welcome</p>
+            <p class="msg">This is an Email automation, once a new user is registered to this website,<br>
+              a welcome message will be sent to their mail Id.
+            </p>
+        {% endif %}
+
+    </section>
+    <!-- <section class="right">
+        <img src="images/img2.svg" alt="Langing image">
+    </section> -->
+</section>
+  
+{% endblock content %}
